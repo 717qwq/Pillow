@@ -1,12 +1,12 @@
 import socket
 import struct
-from PIL import ImageGrab
+import pyautogui  # 使用 pyautogui 来进行截图
 import io
 import time
 
 def capture_screen():
-    # 截屏并将其转换为字节数据
-    screenshot = ImageGrab.grab()
+    # 使用 pyautogui 截屏并将其转换为字节数据
+    screenshot = pyautogui.screenshot()
     with io.BytesIO() as output:
         screenshot.save(output, format="PNG")
         img_data = output.getvalue()
@@ -34,4 +34,4 @@ if __name__ == "__main__":
     while True:
         img_data = capture_screen()
         send_image(img_data, server_ip, port)
-        time.sleep(5)  # 每5秒截图一次
+        time.sleep(3)  # 每5秒截图一次
